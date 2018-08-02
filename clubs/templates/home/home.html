@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	
+</head>
+<body>
+	{% block content %}
+			<main>
+				<div class="main-section">
+					<div class="container">
+						<div class="main-section-data">
+							<div class="row">
+								<div class="col-lg-4 col-md-6 pd-left-none no-pd">
+									<div class="user-data full-width">
+										<div class="user-profile">
+											<div class="username-dt">
+												<div class="usr-pic">
+													{% load static %}
+													<img src="{% static 'images/profiles/user-pic.png' %}" alt="">
+													 
+												</div>
+											</div>
+											
+												<div class="ident">
+													<h3>Foulen</h3>
+													<p>Graphic designer</p>	
+													 
+												</div>
+												<div class="bla">
+													<div class="user-specs">
+														<h3>Niveau</h3>
+														<p>1cm8</p>	
+														 
+													</div>
+													<div class="user-specs">
+														<h3>Fonction</h3>
+														<p>admin</p>	
+														 
+													</div>
+												</div>
+										</div>
+										 <ul class="user-fw-status">
+											<li>
+												<h4>Following</h4>
+												<span>34</span>
+											</li>
+											<li>
+												<h4>Followers</h4>
+												<span>155</span>
+											</li>
+											<li>
+												<a href="#" title="">View Profile</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="col-lg-7 col-md-6 no-pd">
+									<div class="main-ws-sec">
+										<div class="posts-section">
+											<div class="post-bar">
+												<div class="job_descp">
+													<h3>Activity</h3>
+													<div class="post">
+														<p>dsfdsfdfdsf</p>
+													</div>
+													<div class="post">
+														<p>dsfdsfdfdsf</p>
+													</div>
+													<div class="post">
+														<p>dsfdsfdfdsf</p>
+													</div>
+													
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+	{% endblock %}	
+</body>
+</html>

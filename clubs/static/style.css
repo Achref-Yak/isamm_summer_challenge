@@ -1,0 +1,135 @@
+body {
+	line-height: 1;
+    font-family: 'Source Sans Pro', sans-serif;
+    overflow-x: hidden;
+    font-weight: 400;
+    background-color: #eeeeee;
+}
+
+.main-section {
+    float: left;
+    width: 100%;
+}
+ 
+main {
+    padding: 20px 0 60px 0;
+}	
+ 
+
+
+.user-data {
+    text-align: center;
+}
+.full-width {
+    float: left;
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 20px;
+    border-left: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.user-profile {
+    float: left;
+    width: 100%;
+}
+.username-dt {
+    float: left;
+    width: 100%;
+    background-color: #4f30ff;
+    padding-top: 40px;
+}
+.usr-pic {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto;
+    margin-bottom: -48px;
+}
+.usr-pic {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto;
+    margin-bottom: -48px;
+}
+.bla{
+	display: inline-block;
+	float: center;
+}
+.ident{
+ 	
+    float: left;
+  	width: 100%;
+    padding: 63px 20px 0 20px;
+
+}
+.user-specs {
+ 	display: inline-block;
+ 	float: left;
+    padding: 63px 20px 27px 20px;
+
+}
+.main-ws-sec {
+    float: left;
+    width: 100%;
+}
+.posts-section {
+    float: left;
+    width: 100%;
+}
+.post-bar {
+    float: left;
+    width: 100%;
+    background-color: #fff;
+    border-left: 1px solid #e4e4e4;
+    border-right: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+    margin-bottom: 20px;
+}
+
+.job_descp {
+    float: left;
+    width: 100%;
+    padding: 40px 20px 40px 20px;
+    border-bottom: 1px solid #e5e5e5;
+}
+.job_descp > p {
+    color: #686868;
+    font-size: 16px;
+    line-height: 24px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.user-fw-status {
+    float: left;
+    width: 100%;
+}
+
+.user-fw-status li {
+
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
+    padding: 15px 0;
+}
+
+ol, ul {
+    list-style: none;
+    width: 100%;
+     margin: 0; /* To remove default bottom margin */ 
+    padding: 0;
+}
+*  {
+    box-sizing: border-box;
+}
+
+.post {
+	padding-top: 20px;
+	 border-bottom: 1px solid #e5e5e5; 
+}
+
+.user-fw-status li:nth-child(1), .user-fw-status li:nth-child(2) {
+     border-bottom: 0; 
+}
