@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	
+</head>
+<body>
+	{% block content %}
+			<main>
+				<div class="main-section">
+					<div class="container">
+						<div class="main-section-data">
+							<div class="row">
+								<div class="col-lg-4 col-md-6 pd-left-none no-pd">
+									<div class="user-data full-width">
+										<div class="user-profile">
+											<div class="username-dt">
+												<div class="usr-pic">
+													{% load static %}
+													<img src="{% static 'images/profiles/user-pic.png' %}" alt="">
+													 
+												</div>
+											</div>
+
+										</div>
+										 <ul class="user-fw-status">
+											<div class="list-group">
+  <a href="#" class="list-group-item list-group-item-action active">
+    Cras justo odio
+  </a>
+  <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+  <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+  <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+  <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+</div>
+												<a href="#" title="">View Profile</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="col-lg-7 col-md-6 no-pd">
+									<div class="main-ws-sec">
+										<div class="posts-section">
+											<div class="section-Edit">
+												 
+															
+															<form class="form-horizontal" role="form" method="post">
+																{% csrf_token %}
+													          <div class="form-group">
+													            <label class="col-lg-3 control-label">Niveau:</label>
+													            <div class="col-lg-8">
+													              {{user_profile.niveau}}
+													            </div>
+													          </div>
+													          <div class="form-group">
+													            <label class="col-lg-3 control-label">Skills:</label>
+													            <div class="col-lg-8">
+													              {{user_profile.skills}}
+													            </div>
+													          </div>
+													          <div class="form-group">
+													            <label class="col-lg-3 control-label">Site:</label>
+													            <div class="col-lg-8">
+													             {{user_profile.site}}
+													            </div>
+													          </div>
+													          <div class="form-group">
+													            <label class="col-lg-3 control-label">Site:</label>
+													            <div class="col-lg-8">
+													             {{user_profile.tel}}
+													            </div>
+													          </div>
+													           <div class="form-group">
+													            <label class="col-lg-3 control-label">Club:</label>
+													            <div class="col-lg-8">
+													             {{user_profile.club}}
+													            </div>
+													          </div>
+													          <div class="col-lg-3 control-label">
+													          <button type="submit" class="btn btn-primary">Submit</button>
+													          </div>
+													          
+												      </form>
+										 
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+	{% endblock %}	
+</body>
+</html>

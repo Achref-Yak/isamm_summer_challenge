@@ -133,3 +133,17 @@ ol, ul {
 .user-fw-status li:nth-child(1), .user-fw-status li:nth-child(2) {
      border-bottom: 0; 
 }
+
+.section-Edit{
+    float: left;
+    width: 100%;
+    background-color: #fff;
+    border-left: 1px solid #e4e4e4;
+    border-right: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+    margin-bottom: 20px;
+    padding: 30px;
+}
+.user-fw-status .list-group{
+    margin-top: 60px;
+}
