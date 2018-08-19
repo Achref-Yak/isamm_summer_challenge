@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import President,Etudiant,Club,SuperAdmin1,SuperAdmin2,UserProfile
+from .models import President,Etudiant,Club,SuperAdmin1,SuperAdmin2,UserProfile,Activity,Invitation
 
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'niveau', 'skills', 'site', 'tel')
@@ -16,10 +16,10 @@ class UserProfileAdmin(admin.ModelAdmin):
 
 
 admin.site.register(UserProfile)
-admin.site.register(President)
+admin.site.register(Invitation)
  
 admin.site.register(Etudiant)
 admin.site.register(Club)
-admin.site.register(SuperAdmin1)
+admin.site.register(Activity)
 admin.site.register(SuperAdmin2)
 # Register your models here.

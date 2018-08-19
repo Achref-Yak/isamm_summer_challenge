@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	
+</head>
+<body>
+	{% block content %}
+			<main>
+				<div class="main-section">
+					<div class="container">
+						<div class="main-section-data">
+                             {{club.nom_de_club}}
+                             {{club.description}}
+						</div>
+					</div>
+				</div>
+			</main>
+	{% endblock %}	
+</body>
+</html>

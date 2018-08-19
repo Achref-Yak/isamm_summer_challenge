@@ -65,16 +65,31 @@
 										<div class="posts-section">
 											<div class="post-bar">
 												<div class="job_descp">
-													<h3>Activity</h3>
-													<div class="post">
-														<p>dsfdsfdfdsf</p>
-													</div>
-													<div class="post">
-														<p>dsfdsfdfdsf</p>
-													</div>
-													<div class="post">
-														<p>dsfdsfdfdsf</p>
-													</div>
+														<div class="form-group">
+														<form method="POST">
+																{% csrf_token %}
+																<label for="example-text-input" class="col-3 col-form-label">Nom de club</label>
+																<div class="col-10">
+															{{club.nom_de_club}}
+																</div>
+															<label for="example-text-input" class="col-3 col-form-label">Description</label>
+															<div class="col-10">
+															{{club.description}}
+															</div>
+															<label for="example-text-input" class="col-3 col-form-label">Email</label>
+															<div class="col-10">
+															{{club.email}}
+															</div>
+															<label for="example-text-input" class="col-3 col-form-label">Site</label>
+															<div class="col-10">
+															{{club.site}}
+															</div>
+															<div class="col-10"> 
+															<input type="submit"class="btn btn-success" name="btn btn-default" value= 'submit'>
+															</div>	
+														</form>
+														
+													 </div>
 													
 												</div>
 											</div>

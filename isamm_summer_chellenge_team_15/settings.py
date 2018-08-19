@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'clubs',
+    
 )
 
 MIDDLEWARE_CLASSES = (
@@ -96,7 +97,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+MEDIA_URL = '/media_cdn/'
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'isamm_challenge')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 

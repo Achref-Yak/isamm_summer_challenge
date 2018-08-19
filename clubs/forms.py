@@ -15,10 +15,11 @@ class ProfileRegister(forms.ModelForm):
 	skills = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'skills'}))
 	site  = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'site'}))
 	tel  = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'telephone'}))
-	club = forms.ModelChoiceField(queryset=Club.objects.all())
+	image = forms.ImageField()
+
 	class Meta:
 		model = UserProfile
-		fields = {'niveau','skills','site','tel','club'}
+		fields = {'niveau','skills','site','tel','image'}
 
 class RegistrationForm(UserCreationForm):
     
@@ -58,28 +59,18 @@ class RegistrationForm(UserCreationForm):
  
 #la formulaire de ClubForm
 class ClubForm(forms.ModelForm):
-	nom_de_club = forms.CharField(max_length=30)
-	description = forms.CharField(max_length=200)
-	email = forms.CharField(max_length=30)
-	site = forms.CharField(max_length=30)
+	nom_de_club = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Nom de club'}))
+	description = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Description'}))
+	email =forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Email'}))
+	site = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Site'}))
 
 	class Meta:
 		model = Club
 		fields = {'nom_de_club','description','email','site'}
 
-	def cleaned_email(self):
-		print(self.cleaned_data)
-		email_qs = Club.objects.filter("email")
-		if email_qs.exists():
-			raise forms.ValidationError("This email has already been registered")
+ 
 
-"""class user(forms.ModelForm):
-	nom = forms.CharField(max_length=20)
-	prenom = forms.CharField(max_length=20)
-	email = forms.EmailField(validators=[validate_edu_email_address])
-	password1 = forms.CharField(widget=forms.PasswordInput())
-	password2 = forms.CharField(widget=forms.PasswordInput())
-"""
+ 
 
 
 

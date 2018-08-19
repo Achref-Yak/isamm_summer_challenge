@@ -6,45 +6,75 @@ from django.contrib.auth.views import login
 from django.http import Http404,HttpResponse
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
-from  clubs.models import UserProfile
+from  clubs.models import UserProfile, Club
 from django.contrib.auth import (
 	authenticate,
 	get_user_model,
 	login,logout)
 
  
- 
 
-def ProfileView(request):
+
+def club_create_view(request):
+	template_name='home/club_create.html'
+	if request.method =='POST':	 
+		
+		club = ClubForm(request.POST)
+		instance = club.save(commit=False)
+		instance.superviseur = request.user
+		instance.save()
+		args= {'club':club}
+		return render(request, template_name,args)	
+	else:
+		club = ClubForm()
+		args= {'club':club}
+		return render(request, template_name,args)	
+
+
+
+def club_view(request,string):
+	 template_name='home/club.html'
+	 club = Club.objects.get(nom_de_club=string)
+	 args = {'club':club}
+	 return render(request, template_name,args)	
+
+def ProfileView(request, string=None):
 	template_name='home/profile.html'
-	user = request.user
-	args = {'user': user}
+	me = request.user
+	if string:
+		user = User.objects.get(username=string)
+	else:
+		
+		user = request.user
+	args = {'user': user,'me':me}	
 	return render(request, template_name,args)	
 
 def ProfileEdit(request):
 	template_name='home/profileEdit.html'
-	if request.method =='POST':
-		user_profile = ProfileRegister(request.POST)
-		niveau =request.POST.get("niveau")
-		tel =request.POST.get("tel")
-		skills =request.POST.get("skills")
-		niveau =request.POST.get("niveau")
-		site =request.POST.get("site")
-		club =request.POST.get("club")
-		
-		instance = user_profile.save(commit=False)
-		instance.user = request.user
-		instance.niveau = niveau
-		instance.tel = tel
-		instance.skills = skills
-		instance.site = site
-		instance.club.id = club
-		instance.save()
-		 
+	if request.method =='POST':	 
+		"""
+		user_profile =ProfileRegister()
+		niveau = request.POST['niveau']
+		skills = request.POST['skills']
+		site = request.POST['site']
+		tel = request.POST['tel']
+		image = request.POST['image']
+		UserProfile.objects.filter(user=request.user).update(niveau=niveau,skills =skills,site=site,tel=tel,image=image)"""
+
+		user = UserProfile.objects.get(user=request.user)
+		user_profile = ProfileRegister(request.POST or None, request.FILES or None,  instance=user)
+		if user_profile.is_valid():
+			edit = user_profile.save(commit=False)
+			edit.save()
+      
 		args = {'user_profile': user_profile}
 		return render(request, template_name, args)
 	else :
+		
 		user_profile = ProfileRegister()
+		user_new = UserProfile.objects.get(user=request.user)
+		#if user_new.new == True:
+
 		args = {'user_profile': user_profile}
 		return render(request, template_name, args)
 
