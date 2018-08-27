@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,12 +9,194 @@
 </head>
 <body>
 	{% block content %}
-			<main>
+ 
+			<main  >
+				 
 				<div class="main-section">
 					<div class="container">
 						<div class="main-section-data">
-                             {{club.nom_de_club}}
-                             {{club.description}}
+							<div class="row">
+								<div class="col-lg-3 col-md-6 pd-left-none no-pd">
+									<div class="user-data full-width">
+									 
+										<div class="user-profile">
+											<div class="username-dt">
+												<div class="usr-pic">
+													{% load static %}
+													<img src="{{user.userprofile.image.url}}" width=150
+													 alt="">
+													 
+												</div>
+											</div>
+											
+												<div class="ident">
+													<h4>Admin</h4>
+													<p>{{club_form.superviseur.first_name}} </p>	
+													<p>{{club_form.superviseur.last_name}}</p>	
+													 
+												</div>
+												<div class="bla">
+													<div class="user-specs">
+														<h5>Niveau</h5>
+														<p><b>{{user.userprofile.niveau}}</b></p>	
+														 
+													</div>
+													<div class="user-specs">
+														<h5>Fonction</h5>
+														<p>{{user.type}}</p>	
+														 
+													</div>
+												</div>
+										</div>
+										 <ul class="user-fw-status">
+												{% if club_form.superviseur == user %}
+												{% else %}
+											<li>
+												<form method="POST">
+														{% csrf_token %}
+														 {{demande.as_p}}
+													 
+														<button type="submit" class="btn btn-success" name="invi">Send</button>
+												</form>
+												
+											</li>
+											{%endif%}
+											<li>
+												<h4>Followers</h4>
+												<span>155</span>
+											</li>
+											<li>
+												<a href="#" title="">View Profile</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="col-lg-7 col-md-6 no-pd">
+									<div class="main-ws-sec">
+										<div class="posts-section">
+											<div class="post-bar">
+												<div class="job_descp" >
+														
+														{% if club_form.superviseur == user %}
+
+															{% if nb_event == 0 %}
+															<div class="alertNew"> 
+																<h4>Vous n'avez pas encore ajouté une evenement</h4>
+																<h5>Ajoutez-en un maintenent</h5>
+																<button type="button" class="btn btn-success" id="hide" name="eventShow">Ajouter</button>
+															</div>
+															<div class="addEvent">
+															<form method="POST">
+																{% csrf_token %}
+																{% for field in event.visible_fields %}
+																<tr>
+																	<th>{{ field.label_tag }}</th>
+																	<td>
+																	{{ field.errors }}
+																	{{ field }}
+																	{{ field.help_text }}
+																	</td>
+																</tr>
+																{% endfor %}
+														 
+
+																<button type="submit" class="btn btn-success" name="event">Success</button>
+															</form>
+															</div>
+															{% else %}
+															<div class="alertNew"> 
+																	 
+																	<h5>Ajoutez-en une evenement</h5>
+																	<button type="button" class="btn btn-success" id="hide" name="eventShow">Ajouter</button>
+															</div  >
+															<div class="addEvent">
+																	<form method="POST">
+																		{% csrf_token %}
+																		{% for field in event.visible_fields %}
+																		<tr>
+																			<th>{{ field.label_tag }}</th>
+																			<td>
+																			{{ field.errors }}
+																			{{ field }}
+																			{{ field.help_text }}
+																			</td>
+																		</tr>
+																		{% endfor %}
+																 
+		
+																		<button type="submit" class="btn btn-success" name="event">Success</button>
+																	</form>
+																	</div>
+																<h5>List d'evenements de club {{ club_form.nom_de_club}} :</h5>
+																<div >
+																<div class="list-group"  >
+																		{% for event in events %}
+																			
+																			<a href="/isamm/event/{{event.nom_de_event}}" class="list-group-item list-group-item-action flex-column align-items-start">
+																				<div class="d-flex w-100 justify-content-between">
+																				  <h5>{{event.nom_de_event}}</h5>
+																				 
+																				  <small>{{event.date}}</small>
+																				</div>
+																				 
+																				<small>Donec id elit non mi porta.</small>
+																			  </a>
+
+																		{% endfor %}
+
+																	</div>
+															 
+
+															 
+
+
+															{% endif %}
+															  
+															 
+														{% else %}
+														
+														{% endif %}
+
+												
+
+														 
+														
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="main-ws-sec" >
+											<div class="posts-section">
+												<div class="post-bar" ng-app="isamm.demo" ng-controller="IsammController">
+													<div class="job_descp" ng-init="club={{club_form.id}}">
+												 
+															
+															<div >
+																	
+																	<div class="list-group" ng-repeat="list in data | orderBy:'id':true">
+																		<div ng-if="club == list.nom_de_club">
+																			<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+																					<div class="d-flex w-100 justify-content-between">
+																					  <h5 class="mb-1">{{club_form.nom_de_club}}</h5>
+																					  {% verbatim  %}
+																					  <small>{{list.date}}</small>
+																					</div>
+																					<p class="mb-1">{{list.info}}</p>
+																					<small>Donec id elit non mi porta.</small>
+																				  </a>
+																				</div>
+																		</div>		
+															</div>		
+
+															
+															{% endverbatim %}
+															
+													</div>
+												</div>
+											</div>
+										</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

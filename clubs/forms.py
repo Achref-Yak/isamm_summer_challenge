@@ -1,6 +1,7 @@
 # importer les modules des formulaires
 from django import forms
-from clubs.models import Club, Etudiant, UserProfile
+from collections import OrderedDict
+from clubs.models import Club, Etudiant, UserProfile, Activity,Event,demander
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -8,6 +9,8 @@ from django.contrib.auth import (
 	authenticate,
 	get_user_model,
 	login,logout)
+import datetime
+from django.forms.extras.widgets import SelectDateWidget
 
 class ProfileRegister(forms.ModelForm):
 	tel = forms.CharField(required=False)
@@ -56,7 +59,12 @@ class RegistrationForm(UserCreationForm):
         return user
 
 
+class ActivityForm(forms.ModelForm):
+	info = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','placeholder':'Information','rows':'3'}))
  
+	class Meta:
+		model = Activity
+		fields = {'info'}
 #la formulaire de ClubForm
 class ClubForm(forms.ModelForm):
 	nom_de_club = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Nom de club'}))
@@ -69,10 +77,36 @@ class ClubForm(forms.ModelForm):
 		fields = {'nom_de_club','description','email','site'}
 
  
+class InviForm(forms.ModelForm):
+	sender = forms.CharField(widget=forms.TextInput(attrs={'type':'hidden'}))
+	recpiant = forms.CharField(widget=forms.TextInput(attrs={'type':'hidden'}))
+ 
+	class Meta:
+		model = demander
+		fields = {'sender','recpiant'}
 
  
-
-
+class EventForm(forms.ModelForm):
+	nom_de_event = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Nom de event'}))
+	type_de_event = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Type de event'}))
+	description = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Description'}))
+	date = forms.DateField(widget=SelectDateWidget())
+	salle = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Salle'}))
+	recompenses = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Recompenses'}))
+	partenaires = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Partenaires'}))
+	sponsors  =forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Sponsors'}))
+ 
+	class Meta:
+		model = Event
+		fields = {'nom_de_event','type_de_event','description','date','salle','recompenses','partenaires','sponsors'}
+	def __init__(self, *args, **kwargs):
+		super(EventForm, self).__init__(*args, **kwargs)
+		original_fields = self.fields
+		new_order = OrderedDict()
+		for key in ['nom_de_event','type_de_event','description','date','salle','recompenses','partenaires','sponsors']:
+			new_order[key] = original_fields[key]
+		self.fields = new_order
+		
 
 class UserLoginForm(forms.Form):
 	username = forms.CharField()

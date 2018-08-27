@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+ 
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	
+</head>
+<body>
+	{% block content %}
+ 
+			<main  >
+				 
+				<div class="main-section">
+					<div class="container">
+						<div class="main-section-data">
+							<div class="row">
+								<div class="col-lg-3 col-md-6 pd-left-none no-pd">
+									<div class="user-data full-width">
+									 
+										<div class="user-profile">
+											<div class="username-dt">
+												<div class="usr-pic">
+													{% load static %}
+													<img src="{{user.userprofile.image.url}}" width=150
+													 alt="">
+													 
+												</div>
+											</div>
+											
+												<div class="event">
+													 
+													<h5>Nom de l'evenement :</h5>
+													<p><b>{{event.nom_de_event}} </b></p>
+													<h5>Salle :</h5>
+													<p><b>{{event.salle}} </b></p>
+													<h5>Description :</h5>
+													<p><b>{{event.description}} </b></p>
+													<h5>Date :</h5>
+													<p><b>{{event.date}} </b></p>
+													 	
+													 
+												</div>
+												<div class="bla">
+													
+													<div class="user-specs">
+														<h5>Staff</h5>
+														<p><b><a href="/isamm/profile/{{user.username}}">{{user.first_name}}</a></b></p>	
+														<p><b>{{user.first_name}}</b></p>
+														<p><b>{{user.first_name}}</b></p>
+														<p><b>{{user.first_name}}</b></p>
+														<p><b>{{user.first_name}}</b></p>
+														 
+													</div>
+													 
+													
+													<div class="user-specs">
+														<h5>Fonction</h5>
+														<p>{{user.type}}</p>	
+														 
+													</div>
+												</div>
+										</div>
+										 <ul class="user-fw-status">
+											{% if user != me %}
+											<li>
+													<button type="submit" class="btn btn-success">Success</button>
+											</li>
+											{%endif%}
+											<li>
+												<h4>Followers</h4>
+												<span>155</span>
+											</li>
+											<li>
+												<a href="#" title="">View Profile</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="col-lg-6 col-md-6 no-pd" >
+									<div class="main-ws-sec">
+										<div class="posts-section">
+											<div class="post-bar">
+												<div class="job_descp"  >
+														
+														{% if event.admin == user %}
+																<h3>Event {{ event.nom_de_event}}</h3>
+														
+																<form method="POST" >
+																<div class="form-group">
+																																
+																<label for="exampleFormControlTextarea1">Ajouter une statut</label>
+																 
+																{% csrf_token %}
+																{{activity.info}}
+																{{activity.event}}
+																																	
+																</div>
+															 
+																<button type="submit" class="btn btn-success" name="activity" ng-click="submit()">Success</button>
+																
+																</form>
+															 
+															 
+
+
+														{% endif %}
+															  
+													 
+
+												
+
+														 
+														
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="main-ws-sec">
+											<div class="posts-section">
+												<div class="post-bar" ng-app="isamm.demo" ng-controller="IsammController" >
+													<div class="job_descp" ng-init="eve='{{event.nom_de_event}}'">
+															
+													 
+															
+															<div >
+																	
+																	<div class="list-group" ng-repeat="list in data | orderBy:'id':true">
+																		<div ng-if="eve == list.nom_de_event">
+																			<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+																					<div class="d-flex w-100 justify-content-between">
+																					  <h5 class="mb-1">{{club_form.nom_de_club}}</h5>
+																					  {% verbatim  %}
+																					  <small>{{list.date}}</small>
+																					</div>
+																					<p class="mb-1">{{list.info}}</p>
+																					<small>Donec id elit non mi porta.</small>
+																				  </a>
+																				</div>
+																		</div>		
+															</div>		
+
+															
+															{% endverbatim %}
+															
+													</div>
+												</div>
+											</div>
+										</div>
+										
+								</div>
+								<div class="col-lg-3 col-md-6 no-pd">
+
+										<div class="main-ws-sec">
+												<div class="posts-section">
+														<div class="post-bar">
+															 
+															 
+
+															<div class="month">      
+															  <ul>
+																<li class="prev">&#10094;</li>
+																<li class="next">&#10095;</li>
+																<li>
+																  August<br>
+																  <span style="font-size:18px">2017</span>
+																</li>
+															  </ul>
+															</div>
+															
+															<ul class="weekdays">
+															  <li>Mo</li>
+															  <li>Tu</li>
+															  <li>We</li>
+															  <li>Th</li>
+															  <li>Fr</li>
+															  <li>Sa</li>
+															  <li>Su</li>
+															</ul>
+															
+															<ul class="days">  
+															  <li>1</li>
+															  <li>2</li>
+															  <li>3</li>
+															  <li>4</li>
+															  <li>5</li>
+															  <li>6</li>
+															  <li>7</li>
+															  <li>8</li>
+															  <li>9</li>
+															  <li><span class="active">10</span></li>
+															  <li>11</li>
+															  <li>12</li>
+															  <li>13</li>
+															  <li>14</li>
+															  <li>15</li>
+															  <li>16</li>
+															  <li>17</li>
+															  <li>18</li>
+															  <li>19</li>
+															  <li>20</li>
+															  <li>21</li>
+															  <li>22</li>
+															  <li>23</li>
+															  <li>24</li>
+															  <li>25</li>
+															  <li>26</li>
+															  <li>27</li>
+															  <li>28</li>
+															  <li>29</li>
+															  <li>30</li>
+															  <li>31</li>
+															</ul>
+															 
+														</div>
+																
+													</div>
+
+										</div>
+									</div>
+								 
+								 
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+	{% endblock %}	
+</body>
+</html>

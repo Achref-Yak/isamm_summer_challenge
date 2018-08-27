@@ -19,7 +19,8 @@
 											<div class="username-dt">
 												<div class="usr-pic">
 													{% load static %}
-													<img src="{% static 'images/profiles/user-pic.png' %}" alt="">
+													<img src="{{user.userprofile.image.url}}" width=150
+													 alt="">
 													 
 												</div>
 											</div>
@@ -46,7 +47,7 @@
 											<div class="section-Edit">
 												 
 															
-															<form class="form-horizontal" role="form" method="post">
+															<form   enctype="multipart/form-data" class="form-horizontal" role="form" method="post">
 																{% csrf_token %}
 													          <div class="form-group">
 													            <label class="col-lg-3 control-label">Niveau:</label>

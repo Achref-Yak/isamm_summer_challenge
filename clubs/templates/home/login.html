@@ -9,11 +9,12 @@
 	{% block content %}
 <div class="container">
 	{{message}}
-	<div class="col col-lg-4">
+	<div class="col col-lg-4" ng-app="isamm.demo" ng-controller="CalenderController">
+			 
 	 	<form method="POST" action="">
 	 		 {% csrf_token %}
 	 		{{form.as_p}}
-	 		<input type="submit" name="btn btn-default" value= 'submit'>
+	 		<input type="submit" name="btn btn-default" value= 'submit' >
 	 	</form>
 		 
 	</div>

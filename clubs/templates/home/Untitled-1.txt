@@ -1,0 +1,16 @@
+<h3>Club {{ club_form.nom_de_club}}</h3>
+<form method="POST" >
+																	<div class="form-group">
+																	
+																		<label for="exampleFormControlTextarea1">Ajouter une statut</label>
+																		{% csrf_token %}
+																		{{activity.info}}
+																		
+																	</div>
+																	<button type="submit" class="btn btn-success" name="activity">Success</button>
+															</form>
+															<form method="POST">
+																	{% csrf_token %}
+																	{{event.as_p}}
+																	<button type="submit" class="btn btn-success" name="event">Success</button>
+															</form>

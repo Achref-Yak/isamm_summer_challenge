@@ -20,7 +20,8 @@
 											<div class="username-dt">
 												<div class="usr-pic">
 													{% load static %}
-													<img src="{% static 'images/profiles/user-pic.png' %}" alt="">
+													<img src="{{user.userprofile.image.url}}" width=150
+													 alt="">
 													 
 												</div>
 											</div>

@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+ 
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	
+</head>
+<body>
+	{% block content %}
+ 
+			<main >
+				 
+				<div class="main-section">
+					<div class="container">
+						<div class="main-section-data">
+							<div class="row">
+								<div class="col-lg-3 col-md-6 pd-left-none no-pd">
+									<div class="user-data full-width">
+									 
+										<div class="user-profile">
+											<div class="username-dt">
+												<div class="usr-pic">
+													{% load static %}
+													<img src="{{user.userprofile.image.url}}" width=150
+													 alt="">
+													 
+												</div>
+											</div>
+											
+												<div class="event">
+													 
+													<h5>Nom de l'evenement :</h5>
+													<p><b>{{event.nom_de_event}} </b></p>
+													<h5>Salle :</h5>
+													<p><b>{{event.salle}} </b></p>
+													<h5>Description :</h5>
+													<p><b>{{event.description}} </b></p>
+													<h5>Date :</h5>
+													<p><b>{{event.date}} </b></p>
+													 	
+													 
+												</div>
+												<div class="bla">
+													
+													<div class="user-specs">
+														<h5>Staff</h5>
+														<p><b><a href="/isamm/profile/{{user.username}}">{{user.first_name}}</a></b></p>	
+														<p><b>{{user.first_name}}</b></p>
+														<p><b>{{user.first_name}}</b></p>
+														<p><b>{{user.first_name}}</b></p>
+														<p><b>{{user.first_name}}</b></p>
+														 
+													</div>
+													 
+													
+													<div class="user-specs">
+														<h5>Fonction</h5>
+														<p>{{user.type}}</p>	
+														 
+													</div>
+												</div>
+										</div>
+										 <ul class="user-fw-status">
+											{% if user != me %}
+											<li>
+													<button type="submit" class="btn btn-success">Success</button>
+											</li>
+											{%endif%}
+											<li>
+												<h4>Followers</h4>
+												<span>155</span>
+											</li>
+											<li>
+												<a href="#" title="">View Profile</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="col-lg-7 col-md-6 no-pd"  >
+									<div class="main-ws-sec">
+										<div class="posts-section">
+											<div class="post-bar">
+												<h1>dsfdsf</h1>
+												 {% for dmd in invi %}
+												 	{% if dmd.accepted == False %}
+													<h3>{{dmd.user_from_name}}</h3>
+													<a href="/isamm/invitations/{{dmd.user_from_name}}" />
+    															<button id="approve-btn" />Approve</button>
+													</a>
+													<a href="/isamm/invitations/del/{{dmd.user_from_name}}" />
+    															<button id="approve-btn" />delete</button>
+													</a>
+													{% endif %}
+												 {% endfor %}
+																																						 
+														
+												</div>
+											</div>
+										</div>
+									</div>
+									 
+										
+								</div>
+								 
+								 
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+	{% endblock %}	
+</body>
+</html>

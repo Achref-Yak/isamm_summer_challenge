@@ -1,6 +1,12 @@
 body {
-	line-height: 1;
-    font-family: /* Roman */ -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell, Droid Sans, Lucida Grande, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Emoji, Segoe UI Symbol, /* CJK */ Hiragino Kaku Gothic Pro, Meiryo, Hiragino Sans GB W3, /* Arabic */ Noto Naskh Arabic, Droid Arabic Naskh, Geeza Pro, Simplified Arabic, /* Thai */ Noto Sans Thai, Thonburi, Dokchampa, Droid Sans Thai, /* Sans Fallbacks */ Droid Sans Fallback, '.SFNSDisplay-Regular', /* CJK Fallbacks */ Heiti SC, Microsoft Yahei;
+    line-height: 1;
+    font-family: /* Roman */
+    -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell, Droid Sans, Lucida Grande, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Emoji, Segoe UI Symbol, /* CJK */
+    Hiragino Kaku Gothic Pro, Meiryo, Hiragino Sans GB W3, /* Arabic */
+    Noto Naskh Arabic, Droid Arabic Naskh, Geeza Pro, Simplified Arabic, /* Thai */
+    Noto Sans Thai, Thonburi, Dokchampa, Droid Sans Thai, /* Sans Fallbacks */
+    Droid Sans Fallback, '.SFNSDisplay-Regular', /* CJK Fallbacks */
+    Heiti SC, Microsoft Yahei;
     overflow-x: hidden;
     font-weight: 400;
     background-color: #eeeeee;
@@ -10,21 +16,23 @@ body {
     float: left;
     width: 100%;
 }
- 
+
 main {
     padding: 20px 0 60px 0;
-}	
- 
-p::first-letter { 
-    text-transform: capitalize;
-     
 }
-h5{
+
+p::first-letter {
+    text-transform: capitalize;
+}
+
+h5 {
     color: #686868;
 }
+
 .user-data {
     text-align: center;
 }
+
 .full-width {
     float: left;
     width: 100%;
@@ -39,49 +47,56 @@ h5{
     float: left;
     width: 100%;
 }
+
 .username-dt {
     float: left;
     width: 100%;
     background-color: #4f30ff;
     padding-top: 40px;
 }
+
 .usr-pic {
     width: 110px;
     height: 110px;
     margin: 0 auto;
     margin-bottom: -48px;
+    border-radius: 100%;
 }
-.usr-pic {
-    width: 110px;
-    height: 110px;
-    margin: 0 auto;
-    margin-bottom: -48px;
+
+ 
+.bla {
+    display: inline-block;
+    float: center;
 }
-.bla{
-	display: inline-block;
-	float: center;
-}
-.ident{
- 	
+
+.ident {
     float: left;
-  	width: 100%;
+    width: 100%;
     padding: 63px 20px 0 20px;
-
 }
+.event {
+    float: left;
+    width: 100%;
+    padding: 63px 20px 0 20px;
+    text-align: left;
+}
+
 .user-specs {
- 	display: inline-block;
- 	float: left;
+    display: inline-block;
+    float: left;
     padding: 43px 20px 27px 20px;
-
 }
+
 .main-ws-sec {
     float: left;
     width: 100%;
 }
+
 .posts-section {
     float: left;
     width: 100%;
 }
+
 .post-bar {
     float: left;
     width: 100%;
@@ -98,7 +113,8 @@ h5{
     padding: 40px 20px 40px 20px;
     border-bottom: 1px solid #e5e5e5;
 }
-.job_descp > p {
+
+.job_descp>p {
     color: #686868;
     font-size: 16px;
     line-height: 24px;
@@ -112,7 +128,6 @@ h5{
 }
 
 .user-fw-status li {
-
     float: left;
     width: 100%;
     border-bottom: 1px solid #e5e5e5;
@@ -120,26 +135,30 @@ h5{
     padding: 15px 0;
 }
 
-ol, ul {
+ol,
+ul {
     list-style: none;
     width: 100%;
-     margin: 0; /* To remove default bottom margin */ 
+    margin: 0;
+    /* To remove default bottom margin */
     padding: 0;
 }
-*  {
+
+* {
     box-sizing: border-box;
 }
 
 .post {
-	padding-top: 20px;
-	 border-bottom: 1px solid #e5e5e5; 
+    padding-top: 20px;
+    border-bottom: 1px solid #e5e5e5;
 }
 
-.user-fw-status li:nth-child(1), .user-fw-status li:nth-child(2) {
-     border-bottom: 0; 
+.user-fw-status li:nth-child(1),
+.user-fw-status li:nth-child(2) {
+    border-bottom: 0;
 }
 
-.section-Edit{
+.section-Edit {
     float: left;
     width: 100%;
     background-color: #fff;
@@ -149,9 +168,103 @@ ol, ul {
     margin-bottom: 20px;
     padding: 30px;
 }
-.user-fw-status .list-group{
-    margin-top: 60px;
 
+.user-fw-status .list-group {
+    margin-top: 60px;
+}
+.w-100 {
+    width: 100%!important;
+    padding-bottom: 20px;
+}
+label {
+    display: inline-block;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+.events{
+    margin-top:40px;
 }
 
- 
+
+* {box-sizing: border-box;}
+ul {list-style-type: none;}
+body {font-family: Verdana, sans-serif;}
+
+.month {
+    padding: 70px 25px;
+    width: 100%;
+    background: #1abc9c;
+    text-align: center;
+}
+
+.month ul {
+    margin: 0;
+    padding: 0;
+}
+
+.month ul li {
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.month .prev {
+    float: left;
+    padding-top: 10px;
+}
+
+.month .next {
+    float: right;
+    padding-top: 10px;
+}
+
+.weekdays {
+    margin: 0;
+    padding: 8px 0;
+    background-color: #ddd;
+}
+
+.weekdays li {
+    display: inline-block;
+    width: 11.6%;
+    color: #666;
+    text-align: center;
+    font-size: 12px;
+}
+
+.days {
+    padding: 10px 0;
+    background: #eee;
+    margin: 0;
+}
+
+.days li {
+    list-style-type: none;
+    display: inline-block;
+    width: 11.6%;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size:12px;
+    color: #777;
+}
+
+.days li .active {
+    padding: 5px;
+    background: #1abc9c;
+    color: white !important
+}
+
+/* Add media queries for smaller screens */
+@media screen and (max-width:720px) {
+    .weekdays li, .days li {width: 10.1%;}
+}
+
+@media screen and (max-width: 420px) {
+    .weekdays li, .days li {width: 12.5%;}
+    .days li .active {padding: 2px;}
+}
+
+@media screen and (max-width: 290px) {
+    .weekdays li, .days li {width: 12.2%;}
+}

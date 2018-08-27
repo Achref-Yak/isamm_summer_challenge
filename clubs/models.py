@@ -1,45 +1,73 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save 
+from datetime import date
 
 DEFAULT_EXAM_ID = 1
 # les tables de base de donnée
 
-class UserProfileManager(models.Manager):
-    def get_queryset(self):
-        return super(UserProfileManager, self).get_queryset().filter(city='1cm')
+ 
 
 
-class Invitation(models.Model):
-	user = models.OneToOneField(User)
-	accepted = models.BooleanField(default=False)
+ 
 
-	def __str__(self):
-		return self.user.username
+
+
+
+
+
 
 class Club(models.Model):
-	superviseur = models.ForeignKey(User)
+	superviseur = models.ForeignKey(User,default=1,related_name='superviseur')
 	nom_de_club = models.CharField(max_length=30)
-	description = models.TextField(max_length=200)
+	description = models.CharField(max_length=200)
 	email = models.CharField(max_length=30)
 	site = models.CharField(max_length=30)
-	invitation = models.ManyToManyField(Invitation)
-
+ 
+ 
+	
 	def __str__(self):
 		return self.nom_de_club
 
 
+class demander(models.Model):
+	user_from = models.ForeignKey(User,related_name='user_from',default=1)
+	user_from_name = models.CharField(max_length=35,default=1)
+	user_to = models.ForeignKey(User,related_name='user_to',default=1)
+	accepted = models.BooleanField(default=False)
+	invi_type = models.CharField(max_length=20,default="")
+	club = models.ForeignKey(Club,default=1)
+	
+	def __str__(self):
+		return self.user_from_name
+
+
+class Event(models.Model):
+	admin  = models.ForeignKey(User, on_delete=models.CASCADE,default=1)
+	club = models.ForeignKey(Club, on_delete=models.CASCADE,default=1)
+	nom_de_event =  models.CharField(max_length=50,default="")
+	type_de_event = models.CharField(max_length=50,default="")
+	description = models.CharField(max_length=200,default="")
+	date = models.DateField()
+	salle = models.CharField(max_length=20,default="")
+	recompenses = models.CharField(max_length=20,default="")
+	partenaires = models.CharField(max_length=20,default="")
+	sponsors  = models.CharField(max_length=20,default="")
+	def __str__(self):
+		return self.nom_de_event
+
 
 class Activity(models.Model):
-	user = models.OneToOneField(User)
-	activity = models.CharField(max_length=100, default='')
+	nom_de_club = models.ForeignKey(Club,default=1,blank=True)	
+	nom_de_event = models.CharField(max_length=30, default='')
+	info = models.CharField(max_length=1000, default='')
+	event = models.ForeignKey(Event,on_delete=models.CASCADE,default=1 )
+	date = models.DateField(("Date"), default=date.today)
 
 	class Meta:
 		verbose_name_plural = "Activities"
 	def __str__(self):
-		return self.user.username
-
-
+		return self.info
 
 class UserProfile(models.Model):
 	user = models.OneToOneField(User)
@@ -48,8 +76,8 @@ class UserProfile(models.Model):
 	site = models.CharField(max_length=100,default='')
 	tel = models.IntegerField(default=0)
 	user_type = models.CharField(max_length=7,default='')
-	image = models.ImageField(upload_to='media_cdn/', blank=True)
-	activity = models.ManyToManyField(Activity,default=1,blank=True)
+	image = models.ImageField(upload_to='profile/', default='profile/default-user.png')
+	
 	club = models.ManyToManyField(Club,default=1)
 	new = models.BooleanField(default=True,blank=True)
 	usertype = models.CharField(max_length=100, default='',blank=True)
@@ -69,13 +97,7 @@ post_save.connect(create_profile, sender=User)
 
 
 
-class Event(models.Model):
-	type_de_event = models.CharField(max_length=30)
-	description = models.CharField(max_length=200)
-	date = models.DateField()
-	salle = models.CharField(max_length=20)
-	def __str__(self):
-		return self.nom_de_club
+
 
 class President(models.Model):
 	nom = models.CharField(max_length=30)
