@@ -268,3 +268,244 @@ body {font-family: Verdana, sans-serif;}
 @media screen and (max-width: 290px) {
     .weekdays li, .days li {width: 12.2%;}
 }
+
+
+
+#calendar-container{
+ 
+  
+    
+    text-align: center;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: Arial;
+    background-color:white;
+}
+
+#calendar-container>div{
+    padding: 0;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+#calendar-month-year{
+    margin: 5px;
+}
+
+#calendar-dates>table>tr>td{
+ 
+    margin: 5px;
+}
+@media  screen and (min-width: 200px) and (max-width: 1500px) {
+    .Day {
+        background-color: #eff0f2;
+        padding: 7px;
+    }
+}
+@media  screen and (min-width: 1501px) and (max-width: 1920px) {
+    .Day {
+        background-color: #eff0f2;
+        padding: 10px;
+    }
+}
+ 
+.activeDay {
+    background-color: red;
+    cursor: pointer;
+   
+}
+.activeDay:hover {
+    background-color: brown;
+    cursor: pointer;
+   
+}
+
+.prev {
+    float: left;
+      background-color:  #007bff;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.next {
+    float: right;
+    cursor: pointer;
+    background-color:  #007bff;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+table{
+    border-collapse: separate;
+    padding: 15px;
+}
+
+
+.container-fluid{
+    width: 90%;
+}
+
+tr{
+    margin-top: 5px;
+}
+
+postImage{
+  
+}
+ 
+img{
+    image-orientation: initial;
+}
+
+.mb-1{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+
+#example1 {
+ 
+    
+    margin-bottom: 25px;
+   
+ 
+ 
+    float : right;
+    max-width: 90%;
+    height: auto;
+    position: relative;
+    top: -150px;
+}
+
+.cover{
+    width: 90%;
+    height: 300px;
+    float: right;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
+}
+.mainclass{
+  
+}
+
+
+.sidebar-nav {
+    box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
+    position: fixed;
+    width: 340px;
+    height: 1000px;
+    top: 0px;
+    padding: 50px 10px 0px 10px;
+    background: #ffffff;
+    z-index: 99;
+    
+}
+
+.all{
+    width: 325px;
+    height:710px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 10px;
+}
+
+.navbar-nav{
+    padding-left:250px;
+   
+}
+
+.bg-light {
+    background-color: #5576f3 !important;
+    box-shadow: 1px 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+    color: white;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: rgba(250,250,250,1);
+}
+
+.image--cover {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+   
+    float: right;
+    object-fit: cover;
+    object-position: center right;
+  }
+  .image--cover-srch {
+    display: inline-block;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+   
+    float: right;
+    object-fit: cover;
+    object-position: center right;
+  }
+.specs{
+    display: inline-block;
+    width: 50%
+}
+
+.ident {
+    float: left;
+    width: 100%;
+    padding: 0px 0px 0 0px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    margin: 10px;
+}
+
+
+.search-page{
+    position: fixed;
+    width: 400px;
+    height:800px;
+    right: 50px;
+    background:white;
+    z-index: 2;
+    box-shadow: 1px 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+.srch-profile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:100px;
+    text-align: center;
+  
+ 
+}
+
+.srch-items{
+    margin-top: 200px;
+}
+
+
+.srchButton{
+    background-color: #4f30ff;
+}

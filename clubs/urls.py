@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from . import views
 from django.views.generic import TemplateView
-from .api import ClubApi, ActivityApi, EventApi, DemandeApi, UserApi
+from .api import ClubApi, ActivityApi, EventApi, DemandeApi, UserApi, ProfileApi
 from rest_framework.routers import DefaultRouter
 #importer le view LoginView
 from clubs.views import register,login_view,logout_view
@@ -18,7 +18,7 @@ urlpatterns = [
     url(r'^invitations/(?P<add>[\w\-]+)/$',views.InvitationView,name="invitation_with_string"),
     url(r'^invitations/del/(?P<delete>[\w\-]+)/$',views.InvitationView,name="invitation_with_string"),
     url(r'^club/(?P<string>[\w\-]+)/$', views.club_view, name='view_club_with_pk'),
-    url(r'^event/(?P<string>[\w\-]+)/$', views.event_view, name='view_event_with_pk'),
+    url(r'^event/(?P<string>[\w ]+)/$', views.event_view, name='view_event_with_pk'),
 
 ]
 
@@ -28,5 +28,6 @@ router.register(r'activity', ActivityApi)
 router.register(r'events', EventApi)
 router.register(r'clubs', ClubApi)
 router.register(r'users', UserApi)
+router.register(r'profiles', ProfileApi)
  
 urlpatterns += router.urls

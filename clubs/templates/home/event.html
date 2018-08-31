@@ -13,7 +13,7 @@
 			<main  >
 				 
 				<div class="main-section">
-					<div class="container">
+					<div class="container-fluid">
 						<div class="main-section-data">
 							<div class="row">
 								<div class="col-lg-3 col-md-6 pd-left-none no-pd">
@@ -23,8 +23,7 @@
 											<div class="username-dt">
 												<div class="usr-pic">
 													{% load static %}
-													<img src="{{user.userprofile.image.url}}" width=150
-													 alt="">
+													 
 													 
 												</div>
 											</div>
@@ -87,18 +86,22 @@
 														{% if event.admin == user %}
 																<h3>Event {{ event.nom_de_event}}</h3>
 														
-																<form method="POST" >
+																<form enctype="multipart/form-data" method="POST" >
 																<div class="form-group">
 																																
-																<label for="exampleFormControlTextarea1">Ajouter une statut</label>
+																
 																 
 																{% csrf_token %}
+																<label for="exampleFormControlTextarea1">Ajouter une photo</label>
+																{{activity.image}}
+																<label for="exampleFormControlTextarea1">Ajouter une information</label>
 																{{activity.info}}
-																{{activity.event}}
+														
+																
 																																	
 																</div>
 															 
-																<button type="submit" class="btn btn-success" name="activity" ng-click="submit()">Success</button>
+																<button type="submit" class="btn btn-success" name="activity"  >Success</button>
 																
 																</form>
 															 
@@ -119,30 +122,36 @@
 									</div>
 									<div class="main-ws-sec">
 											<div class="posts-section">
-												<div class="post-bar" ng-app="isamm.demo" ng-controller="IsammController" >
+												<div class="post-bar"  >
 													<div class="job_descp" ng-init="eve='{{event.nom_de_event}}'">
 															
-													 
+													
 															
 															<div >
 																	
-																	<div class="list-group" ng-repeat="list in data | orderBy:'id':true">
-																		<div ng-if="eve == list.nom_de_event">
-																			<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+																	<div class="list-group">
+																		{% for act in acts reversed %}
+																		 
+																			<a href="{{act.image.url |default_if_none:'#'}}" class="list-group-item list-group-item-action flex-column align-items-start">
 																					<div class="d-flex w-100 justify-content-between">
-																					  <h5 class="mb-1">{{club_form.nom_de_club}}</h5>
-																					  {% verbatim  %}
-																					  <small>{{list.date}}</small>
+																							<div class="postImage"> <img  src="{{act.image.url |default_if_none:'#'}}" width=100%  
+																							   alt=""> </div>
+																					  
+																					 
+																				 
 																					</div>
-																					<p class="mb-1">{{list.info}}</p>
+																					<h5 class="mb-1">{{club_form.nom_de_club}}</h5>
+																					<small>{{act.date}}</small>
+																					<p class="mb-1">{{act.info}}</p>
 																					<small>Donec id elit non mi porta.</small>
 																				  </a>
-																				</div>
-																		</div>		
+																		{% endfor %}
+																		</div>	
+																			
 															</div>		
 
 															
-															{% endverbatim %}
+													 
 															
 													</div>
 												</div>
@@ -150,70 +159,35 @@
 										</div>
 										
 								</div>
-								<div class="col-lg-3 col-md-6 no-pd">
+								<div class="col-lg-3 col-md-6 no-pd" >
 
 										<div class="main-ws-sec">
-												<div class="posts-section">
-														<div class="post-bar">
-															 
-															 
-
-															<div class="month">      
-															  <ul>
-																<li class="prev">&#10094;</li>
-																<li class="next">&#10095;</li>
-																<li>
-																  August<br>
-																  <span style="font-size:18px">2017</span>
-																</li>
-															  </ul>
+												<div class="posts-section" ng-app="isamm.demo" ng-controller="CalenderController">
+														<div ng-init="load()">
 															</div>
-															
-															<ul class="weekdays">
-															  <li>Mo</li>
-															  <li>Tu</li>
-															  <li>We</li>
-															  <li>Th</li>
-															  <li>Fr</li>
-															  <li>Sa</li>
-															  <li>Su</li>
-															</ul>
-															
-															<ul class="days">  
-															  <li>1</li>
-															  <li>2</li>
-															  <li>3</li>
-															  <li>4</li>
-															  <li>5</li>
-															  <li>6</li>
-															  <li>7</li>
-															  <li>8</li>
-															  <li>9</li>
-															  <li><span class="active">10</span></li>
-															  <li>11</li>
-															  <li>12</li>
-															  <li>13</li>
-															  <li>14</li>
-															  <li>15</li>
-															  <li>16</li>
-															  <li>17</li>
-															  <li>18</li>
-															  <li>19</li>
-															  <li>20</li>
-															  <li>21</li>
-															  <li>22</li>
-															  <li>23</li>
-															  <li>24</li>
-															  <li>25</li>
-															  <li>26</li>
-															  <li>27</li>
-															  <li>28</li>
-															  <li>29</li>
-															  <li>30</li>
-															  <li>31</li>
-															</ul>
-															 
-														</div>
+														<div id="calendar-container">
+																 
+																		{% verbatim %}
+																		{{dates}}
+																	   {% endverbatim %}
+																	 
+																<ul>
+																		<button ng-click="next(-1)" class="prev">&#10094;</button>
+																		<button ng-click="next(+1)" class="next">&#10095;</button>
+																		<li>
+																	 
+																		</li>
+																	  </ul>
+																	  {% verbatim %}
+																<div id="calendar-header">
+																	<span id="calendar-month-year"> </span>
+																</div>
+																<div id="calendar-dates">
+																 
+																</div>
+																{% endverbatim %}
+															</div>
+												</div> 
 																
 													</div>
 

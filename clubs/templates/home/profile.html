@@ -20,7 +20,7 @@
 											<div class="username-dt">
 												<div class="usr-pic">
 													{% load static %}
-													<img src="{{user.userprofile.image.url}}" width=150
+													 <img src="{{user.userprofile.image.url}}" width=150
 													 alt="">
 													 
 												</div>
@@ -67,16 +67,22 @@
 											<div class="post-bar">
 												<div class="job_descp">
 													<h3>Activity</h3>
-													<div class="post">
-														<p>dsfdsfdfdsf</p>
-													</div>
-													<div class="post">
-														<p>dsfdsfdfdsf</p>
-													</div>
-													<div class="post">
-														<p>dsfdsfdfdsf</p>
-													</div>
-													
+													{% if user != me %}
+															{% for not in notifications %}
+															<div class="post" >
+																<p>{{user}}a été{{not.info}}</p>
+															</div>
+
+															{% endfor %}
+
+													{% else %}
+														{% for not in notifications %}
+															<div class="post" >
+																<p>Vous avez{{not.info}}</p>
+															</div>
+
+														{% endfor %}
+													{% endif %}
 												</div>
 											</div>
 										</div>

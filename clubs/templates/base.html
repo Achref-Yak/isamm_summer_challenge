@@ -19,13 +19,20 @@
 			$(".alertNew").hide();
 			$(".addEvent").show();
 		}); 
+		$(".clubEdit").hide();
+		$("#hideClub").click(function(){
+			$(".clubProfile").hide();
+			$(".clubEdit").show();
+		}); 
 	});
 	</script>
 <title></title>
 	{% load static %}
 	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'animate.css' %}">
 	<script src="{% static "isamm.js" %}"></script>
 	<script src="{% static "config.js" %}"></script>
+	<script src="{% static "calenderier.js" %}"></script>
 	 
 </head>
 <body> 

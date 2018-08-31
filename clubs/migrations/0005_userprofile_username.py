@@ -7,12 +7,13 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('clubs', '0001_initial'),
+        ('clubs', '0004_club_staff'),
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='demander',
-            name='deleted',
+        migrations.AddField(
+            model_name='userprofile',
+            name='username',
+            field=models.CharField(default='', max_length=100),
         ),
     ]

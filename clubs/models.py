@@ -2,6 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save 
 from datetime import date
+from PIL import Image,ExifTags
+from io import StringIO
+import os
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 DEFAULT_EXAM_ID = 1
 # les tables de base de donnée
@@ -20,15 +25,23 @@ DEFAULT_EXAM_ID = 1
 class Club(models.Model):
 	superviseur = models.ForeignKey(User,default=1,related_name='superviseur')
 	nom_de_club = models.CharField(max_length=30)
-	description = models.CharField(max_length=200)
-	email = models.CharField(max_length=30)
-	site = models.CharField(max_length=30)
+	description = models.CharField(max_length=1000,default="")
+	email = models.CharField(max_length=30,default="")
+	site = models.CharField(max_length=30,default="")
+	CoverImage = models.ImageField(upload_to='cover/',blank=True)
+	staff = models.ManyToManyField(User, default=1)
  
  
 	
 	def __str__(self):
 		return self.nom_de_club
 
+
+class notification(models.Model):
+	club = models.ForeignKey(Club,related_name='club_to_notification',default=1)
+	user_from = models.ForeignKey(User,related_name='user_from_notification',default=1)
+	info = models.CharField(max_length=65,default=1)
+	seen = models.BooleanField(default=False)
 
 class demander(models.Model):
 	user_from = models.ForeignKey(User,related_name='user_from',default=1)
@@ -56,21 +69,55 @@ class Event(models.Model):
 	def __str__(self):
 		return self.nom_de_event
 
+def rotate_image(filepath):
+  try:
+    image = Image.open(filepath)
+    for orientation in ExifTags.TAGS.keys():
+      if ExifTags.TAGS[orientation] == 'Orientation':
+            break
+    exif = dict(image._getexif().items())
 
+    if exif[orientation] == 3:
+        image = image.rotate(180, expand=True)
+    elif exif[orientation] == 6:
+        image = image.rotate(270, expand=True)
+    elif exif[orientation] == 8:
+        image = image.rotate(90, expand=True)
+    image.save(filepath)
+    image.close()
+  except (AttributeError, KeyError, IndexError):
+    # cases: image don't have getexif
+    pass
+	
 class Activity(models.Model):
 	nom_de_club = models.ForeignKey(Club,default=1,blank=True)	
 	nom_de_event = models.CharField(max_length=30, default='')
-	info = models.CharField(max_length=1000, default='')
+	info = models.CharField(max_length=1000, default='',blank=True)
 	event = models.ForeignKey(Event,on_delete=models.CASCADE,default=1 )
 	date = models.DateField(("Date"), default=date.today)
+	image = models.ImageField(upload_to='pics/',blank=True,default=None)
 
 	class Meta:
 		verbose_name_plural = "Activities"
 	def __str__(self):
-		return self.info
+		return self.nom_de_event
+ 
+
+
+@receiver(post_save, sender=Activity, dispatch_uid="update_image_profile")
+def update_image(sender, instance, **kwargs):
+  if instance.image:
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    fullpath = BASE_DIR + instance.image.url
+    rotate_image(fullpath)		 
+
+
 
 class UserProfile(models.Model):
 	user = models.OneToOneField(User)
+	username = models.CharField(max_length=100, default='')
+	first_name = models.CharField(max_length=100, default='')
+	last_name = models.CharField(max_length=100, default='')
 	niveau = models.CharField(max_length=100, default='')
 	skills = models.CharField(max_length=100, default='')
 	site = models.CharField(max_length=100,default='')
@@ -87,6 +134,12 @@ class UserProfile(models.Model):
 	def __str__(self):
 		return self.user.username
 
+@receiver(post_save, sender=UserProfile, dispatch_uid="update_image_profile")
+def update_image(sender, instance, **kwargs):
+  if instance.image:
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    fullpath = BASE_DIR + instance.image.url
+    rotate_image(fullpath)	
 
 def create_profile(sender, **kwargs):
     if kwargs['created']:

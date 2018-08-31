@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Club, Activity, Event, demander
+from .models import Club, Activity, Event, demander, UserProfile
 
 		
 
@@ -14,12 +14,15 @@ class EventSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Event 
 
+class ProfileSerializer(serializers.ModelSerializer):
+	
+	class Meta:
+		model = UserProfile 
+		
 class UserSerializer(serializers.ModelSerializer):
-
+	profile = ProfileSerializer(read_only=True, many=True)
 	class Meta:
 		model = User 
-		
-
 
 
 		

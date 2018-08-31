@@ -1,7 +1,7 @@
 # importer les modules des formulaires
 from django import forms
 from collections import OrderedDict
-from clubs.models import Club, Etudiant, UserProfile, Activity,Event,demander
+from clubs.models import Club, Etudiant, UserProfile, Activity,Event,demander, notification
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -61,20 +61,23 @@ class RegistrationForm(UserCreationForm):
 
 class ActivityForm(forms.ModelForm):
 	info = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','placeholder':'Information','rows':'3'}))
+	image = forms.ImageField()
  
 	class Meta:
 		model = Activity
-		fields = {'info'}
+		fields = {'info','image'}
 #la formulaire de ClubForm
 class ClubForm(forms.ModelForm):
 	nom_de_club = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Nom de club'}))
 	description = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Description'}))
 	email =forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Email'}))
 	site = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Site'}))
+	CoverImage = forms.ImageField(widget=forms.CheckboxSelectMultiple())
+	staff = forms.MultipleChoiceField()
 
 	class Meta:
 		model = Club
-		fields = {'nom_de_club','description','email','site'}
+		fields = {'nom_de_club','description','email','site','CoverImage','staff'}
 
  
 class InviForm(forms.ModelForm):

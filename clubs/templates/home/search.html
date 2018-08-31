@@ -9,43 +9,6 @@
 </head>
 <body>
 	{% block content %}
-	{% if club_form.superviseur = user %}
-			 
-
-
-	<div class="search-page animated bounceInRight"  ng-app="isamm.demo" ng-controller="usercontroller">
-		{% verbatim %}
-		<input type="text" name="country" id="country" placeholder="Chercher des profiles" ng-model="country" ng-keyup="complete(country)" class="form-control"/>
-		<ul class="list-group" ng-model="hidethis" ng-hide="hidethis">
-			<li class="list-group-item" ng-repeat="countrydata in filterCountry" ng-click="fillTextbox(countrydata)">{{countrydata}}</li>
-		</ul>
-		<div id="srch-profile-id" class="srch-profile"  ng-model="hidesrch" ng-hide="hidesrch">
-			<div >
-					<img src="{{pic}}" class="image--cover-srch">
-					<div class="srch-items">
-							<p >
-									@{{usrname}} 
-								</p>
-								<p >
-										{{firstname}} 
-									</p>
-									<p >
-											{{lastname}} 
-										</p>
-									 
-											<a href="/isamm/profile/{{usrname}}" class="btn btn-primary"   name="invi">Visiter</a>
-									 
-							
-					</div>
-			
-			</div>
-			
-		</div>
-
-	</div>
-	
-	{% endverbatim %}
-	{% endif%}
 	<div class="sidebar-nav">
 		<div class="all"> 
 			<div class="clubProfile">
@@ -113,7 +76,6 @@
 					 {{clubEdit.site}}
 					 <label for="exampleFormControlTextarea1">Nom de club</label>
 					 {{clubEdit.nom_de_club}}
-				 
 					 <label for="exampleFormControlTextarea1">Photo cover</label>
 					 {{clubEdit.CoverImage}}
 				 
@@ -241,39 +203,7 @@
 											
 									</div>
 									</div>
-									<div class="col-lg-3 col-md-6 no-pd" >
-
-											<div class="main-ws-sec">
-													<div class="posts-section">
-															<div ng-init="load()">
-																</div>
-															<div id="calendar-container">
-																	 
-																			{% verbatim %}
-																			{{dates}}
-																		   {% endverbatim %}
-																		 
-																	<ul>
-																			<button ng-click="next(-1)" class="prev">&#10094;</button>
-																			<button ng-click="next(+1)" class="next">&#10095;</button>
-																			<li>
-																		 
-																			</li>
-																		  </ul>
-																		  {% verbatim %}
-																	<div id="calendar-header">
-																		<span id="calendar-month-year"> </span>
-																	</div>
-																	<div id="calendar-dates">
-																	 
-																	</div>
-																	{% endverbatim %}
-																</div>
-													</div> 
-																	
-														</div>
-			
-											</div>
+							 
 								
 							
 					

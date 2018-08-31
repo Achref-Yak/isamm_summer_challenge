@@ -24,7 +24,8 @@ Fonctionnalités :
  *  Consulter et gérer le calendrier des évènements qui se déroulent à l’ISAMM (ajouter, modifier, supprimer, archiver évènement).
  *  Admission aux clubs: Les étudiants peuvent faire des demandes d'admission aux clubs le président du club peut accepter ou refuser cette demande .
  *  Affectation de missions aux membres du club (qui affecte des missions : de communication de publicité, etc aux différents membres? le président du club?)
- Etudiant :
+ 
+Etudiant :
  *  Demander de joindre un club
  *  Consulter les anciens et les nouveaux événements qui auront lieu à l’ISAMM (donc consulter le calendrier et l’archive ou l’historique).
  *  Dans chaque page d'événement on trouve :
@@ -43,5 +44,5 @@ Technologies:
   Lorsque vous créez un site web, vous avez souvent besoin de la même chose : une manière de gérer l'authentification de vos utilisateurs (créer un compte, se connecter, se déconnecter), une partie dédiée à
   la gestion de votre site, des formulaires, une manière de mettre en ligne des fichiers, etc.
 
- * Angular est un framework JavaScript Open Source développé par Google. Il utilise l’architecture MVM (Modèle Vue Modèle), proche du modèle MVC. Cela va permettre de structurer son code et bien séparer la vue (l’interface) des modèles (fonctionnement).
+ * AngularJs est un framework JavaScript Open Source développé par Google. Il utilise l’architecture MVM (Modèle Vue Modèle), proche du modèle MVC. Cela va permettre de structurer son code et bien séparer la vue (l’interface) des modèles (fonctionnement).
    Il est considéré comme un langage « côté client », ceux-ci permettent de gérer l’interface utilisateur de chaque page (affichage, interactions…) de façon dynamique et viennent en complément aux langages côté serveur.
